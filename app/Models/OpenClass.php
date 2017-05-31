@@ -10,13 +10,16 @@ class OpenClass extends Model
 
     protected $fillable = [
         'title',
-        'label',
+        'tag',
         'abstract_content',
         'video_url',
+        'video_app_id',
+        'video_file_id',
+        'video_duration',
 
         'teacher_id',
         'unit_id',
-        'chapter_number',
+        'chapter_id',
         'section_number',
     ];
 
@@ -24,7 +27,7 @@ class OpenClass extends Model
         return $this->belongsTo(Customer::class, 'teacher_id');
     }
 
-    public function unit(){
-        return $this->belongsTo(OpenClassUnit::class);
+    public function chapter(){
+        return $this->belongsTo(OpenClassChapter::class);
     }
 }

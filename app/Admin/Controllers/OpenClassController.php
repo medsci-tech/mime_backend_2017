@@ -4,7 +4,6 @@ namespace App\Admin\Controllers;
 
 use App\Models\Customer;
 use App\Models\OpenClass as ThisModel;
-use App\Models\OpenClassUnit;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
@@ -22,7 +21,8 @@ class OpenClassController extends CommonController
             $grid->column('abstract_content', '简介');
             $grid->column('video_url', '视频链接');
             $grid->column('teacher.name', '讲师');
-            $grid->column('unit.title', '系列');
+            $grid->column('chapter.unit.title', '系列');
+            $grid->column('chapter.title', '章节');
         });
     }
 
@@ -36,7 +36,6 @@ class OpenClassController extends CommonController
             $form->text('abstract_content', '简介');
             $form->text('video_url', '视频链接');
             $form->select('teacher_id', '讲师')->options(Customer::all());
-            $form->select('unit_id', '系列')->options(OpenClassUnit::all());
 
             $form->display('created_at', '创建时间');
             $form->display('updated_at', '更新时间');

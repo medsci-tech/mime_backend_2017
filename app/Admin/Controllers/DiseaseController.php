@@ -4,25 +4,21 @@ namespace App\Admin\Controllers;
 
 use App\Models\Customer;
 use App\Models\OpenClass as ThisModel;
+use App\Models\OpenClassUnit;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 
-class OpenClassController extends CommonController
+class DiseaseController extends CommonController
 {
     use ModelForm;
 
     protected function grid(){
         return Admin::grid(ThisModel::class, function(Grid $grid){
             $grid->column('id', 'ID')->sortable();
-            $grid->column('title', '标题');
-            $grid->column('label', '标签');
-            $grid->column('abstract_content', '简介');
-            $grid->column('video_url', '视频链接');
-            $grid->column('teacher.name', '讲师');
-            $grid->column('chapter.unit.title', '系列');
-            $grid->column('chapter.title', '章节');
+            $grid->column('name_zh', '中文标题');
+            $grid->column('name_en', '英文标题');
         });
     }
 
@@ -31,11 +27,8 @@ class OpenClassController extends CommonController
         return Admin::form(ThisModel::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('title', '标题');
-            $form->text('tag', '标签');
-            $form->text('abstract_content', '简介');
-            $form->text('video_url', '视频链接');
-            $form->select('teacher_id', '讲师')->options(Customer::all());
+            $form->text('name_zh', '中文标题');
+            $form->text('name_en', '英文标题');
 
             $form->display('created_at', '创建时间');
             $form->display('updated_at', '更新时间');

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OpenClassUnit extends Model
+class Diseases extends Model
 {
-    protected $table = 'open_class_units';
-    
+    protected $table = 'diseases';
+
     protected $fillable = [
-        'title',
+        'name_en',
+        'name_zh',
     ];
 }
